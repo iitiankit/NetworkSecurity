@@ -17,11 +17,11 @@ from networksecurity.constant.training_pipeline import TARGET_COLUMN
 
 
 class DataTransformation():
-    def __init__(self,datavalidationartifact=DataValidationArtifact,datatransformationconfig=DataTransformationConfig):
+    def __init__(self,data_validation_artifact=DataValidationArtifact,data_transformation_config=DataTransformationConfig):
 
         try:
-            self.data_validation_artifact = datavalidationartifact
-            self.data_transformation_config = datatransformationconfig
+            self.data_validation_artifact = data_validation_artifact
+            self.data_transformation_config = data_transformation_config
         except Exception as e:
             raise CustomException(e,sys)
         

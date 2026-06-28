@@ -6,4 +6,7 @@ certifi
 pymongo[srv]==3.12
 pyYAML
 dill
+fastapi
+uvicorn
+python-multipart
 # -e .
