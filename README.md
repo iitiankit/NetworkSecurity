@@ -1,245 +1,341 @@
-🛡️ Network Security - Phishing Website Detection System
+# 🛡️ Network Security - Phishing Website Detection using Machine Learning
 
-A production-ready Machine Learning project that detects phishing websites using URL and website-related security features. The project follows an end-to-end MLOps architecture with modular ETL pipelines, model training, experiment tracking, cloud storage, and FastAPI deployment.
+An end-to-end Machine Learning project that detects phishing websites using URL and website security features. This project follows a production-ready MLOps architecture with modular ETL pipelines, model training, cloud integration, and FastAPI deployment.
 
-📌 Overview
+---
 
-Phishing attacks remain one of the most common cybersecurity threats. This project predicts whether a website is Legitimate or Phishing using 30+ handcrafted security features extracted from URLs and website metadata.
+## 🚀 Features
 
-The project is built following software engineering best practices with separate components for data ingestion, validation, transformation, model training, prediction, logging, exception handling, and cloud integration.
+- End-to-End Machine Learning Pipeline
+- Modular ETL Architecture
+- Data Ingestion from MongoDB Atlas
+- Data Validation using Schema Validation
+- Data Transformation Pipeline
+- Model Training & Evaluation
+- Hyperparameter Tuning
+- MLflow Experiment Tracking
+- AWS S3 Integration for Model Artifacts
+- FastAPI REST API
+- Interactive Swagger Documentation
+- Logging & Custom Exception Handling
+- Production-Ready Project Structure
 
-✨ Features
-End-to-End Machine Learning Pipeline
-Modular ETL Architecture
-Data Validation using predefined schema
-Data Transformation Pipeline
-Automated Model Training
-Hyperparameter Tuning
-Experiment Tracking
-MongoDB Atlas Integration
-AWS S3 Artifact Storage
-FastAPI REST API
-Interactive Swagger Documentation
-Logging & Custom Exception Handling
-Production-ready Project Structure
-🏗️ Project Architecture
-                MongoDB Atlas
+---
+
+# 📌 Project Workflow
+
+```text
+                 MongoDB Atlas
                       │
                       ▼
-             Data Ingestion Pipeline
+              Data Ingestion
                       │
                       ▼
-             Data Validation Pipeline
+              Data Validation
                       │
                       ▼
-          Data Transformation Pipeline
+           Data Transformation
                       │
                       ▼
-             Model Training Pipeline
+              Model Training
                       │
                       ▼
-          Trained Model & Artifacts
-                      │
-              Upload to AWS S3
+          Best Model Selection
                       │
                       ▼
-              FastAPI Prediction API
+            Upload Artifacts
+                 to AWS S3
                       │
                       ▼
-                   End User
-📂 Project Structure
+             FastAPI Prediction API
+                      │
+                      ▼
+                  End User
+```
+
+---
+
+# 📂 Project Structure
+
+```text
 NetworkSecurity/
 │
 ├── networksecurity/
+│   ├── cloud/
 │   ├── components/
 │   │   ├── data_ingestion.py
 │   │   ├── data_validation.py
 │   │   ├── data_transformation.py
 │   │   ├── model_trainer.py
 │   │
-│   ├── pipeline/
-│   │   ├── training_pipeline.py
-│   │   ├── prediction_pipeline.py
-│   │
-│   ├── cloud/
+│   ├── configuration/
+│   ├── constants/
 │   ├── entity/
 │   ├── exception/
 │   ├── logger/
-│   ├── utils/
-│   └── configuration/
+│   ├── pipeline/
+│   │   ├── training_pipeline.py
+│   │   └── prediction_pipeline.py
+│   │
+│   └── utils/
 │
 ├── templates/
 ├── static/
 ├── app.py
 ├── main.py
 ├── requirements.txt
+├── setup.py
 └── README.md
-📊 Dataset
+```
 
-The dataset consists of 31 features describing various URL and website characteristics.
+---
 
-Example Features:
+# 📊 Dataset
 
-Feature	Description
-having_IP_Address	Whether URL contains IP address
-URL_Length	Length of URL
-Shortining_Service	Presence of URL shortening service
-having_At_Symbol	Contains '@' symbol
-Prefix_Suffix	Presence of '-' in domain
-SSLfinal_State	SSL certificate validity
-Domain_registeration_length	Domain registration duration
-HTTPS_token	HTTPS token usage
-URL_of_Anchor	Anchor tag analysis
-Links_in_tags	Links inside HTML tags
-web_traffic	Website popularity
-Google_Index	Indexed by Google
-Page_Rank	Website Page Rank
-Statistical_report	Blacklist status
-Result	Target variable
-Target Variable
-Value	Meaning
--1	Phishing Website
-1	Legitimate Website
-⚙️ ETL Pipeline
-1️⃣ Data Ingestion
-Reads data from MongoDB Atlas
-Exports data into Feature Store
-Splits dataset into Train/Test
-Stores ingestion artifacts
-2️⃣ Data Validation
-Schema validation
-Missing value checks
-Data drift detection
-Dataset integrity verification
-3️⃣ Data Transformation
-Feature preprocessing
-Pipeline creation
-Train/Test transformation
-Serialization using Pickle
-4️⃣ Model Training
-Trains multiple Machine Learning models
-Hyperparameter tuning
-Model evaluation
-Best model selection
-Artifact generation
-🤖 Machine Learning Workflow
-Raw Data
-    │
-    ▼
-Data Ingestion
-    │
-    ▼
-Data Validation
-    │
-    ▼
-Data Transformation
-    │
-    ▼
-Model Training
-    │
-    ▼
-Best Model Selection
-    │
-    ▼
-Model Saved
-    │
-    ▼
-Prediction API
-🌐 FastAPI Endpoints
-Endpoint	Description
-/	Home Page
-/train	Trigger Model Training Pipeline
-/predict	Predict Website Category
-/docs	Swagger UI Documentation
-☁️ Cloud Integration
-MongoDB Atlas
-Stores raw phishing dataset
-Used as the primary data source
-AWS S3
+The dataset contains 30 URL and website security-related features used to classify websites as **Legitimate** or **Phishing**.
 
-Stores:
+### Sample Features
 
-Trained Models
-Preprocessing Objects
-Pipeline Artifacts
-Feature Store
-Logs
-🛠️ Tech Stack
-Programming Language
-Python
-Backend
-FastAPI
-Uvicorn
-Machine Learning
-Scikit-Learn
-XGBoost
-CatBoost
-Database
-MongoDB Atlas
-Cloud
-AWS S3
-Data Processing
-Pandas
-NumPy
-Experimentation
-MLflow
-Version Control
-Git
-GitHub
-🚀 Installation
+- having_IP_Address
+- URL_Length
+- Shortining_Service
+- Prefix_Suffix
+- SSLfinal_State
+- Domain_registeration_length
+- HTTPS_token
+- URL_of_Anchor
+- Links_in_tags
+- web_traffic
+- Page_Rank
+- Google_Index
+- Statistical_report
 
-Clone the repository
+### Target Variable
 
+| Value | Class |
+|------|-------|
+| 1 | Legitimate Website |
+| -1 | Phishing Website |
+
+---
+
+# ⚙️ ETL Pipeline
+
+## 📥 Data Ingestion
+
+- Reads data from MongoDB Atlas
+- Exports dataset to Feature Store
+- Splits dataset into Train/Test
+- Stores ingestion artifacts
+
+---
+
+## ✅ Data Validation
+
+- Schema Validation
+- Missing Value Validation
+- Data Drift Detection
+- Dataset Integrity Checks
+
+---
+
+## 🔄 Data Transformation
+
+- Feature Engineering
+- Data Preprocessing
+- Transformation Pipeline Creation
+- Serialization of Preprocessor
+
+---
+
+## 🤖 Model Training
+
+- Trains Multiple Machine Learning Models
+- Hyperparameter Tuning
+- Model Evaluation
+- Best Model Selection
+- Saves Model Artifacts
+
+---
+
+# 🌐 FastAPI Endpoints
+
+| Endpoint | Description |
+|----------|-------------|
+| `/` | Home Page |
+| `/train` | Train Machine Learning Model |
+| `/predict` | Predict Website Type |
+| `/docs` | Swagger API Documentation |
+
+---
+
+# ☁️ Cloud Integration
+
+## MongoDB Atlas
+
+- Stores Raw Dataset
+- Used as Data Source for ETL Pipeline
+
+## AWS S3
+
+Stores
+
+- Trained Models
+- Feature Store
+- Preprocessor
+- Pipeline Artifacts
+- Logs
+
+---
+
+# 🛠️ Tech Stack
+
+### Programming Language
+
+- Python
+
+### Backend
+
+- FastAPI
+- Uvicorn
+
+### Machine Learning
+
+- Scikit-Learn
+- XGBoost
+- CatBoost
+
+### Database
+
+- MongoDB Atlas
+
+### Cloud
+
+- AWS S3
+
+### Experiment Tracking
+
+- MLflow
+
+### Data Processing
+
+- Pandas
+- NumPy
+
+### Version Control
+
+- Git
+- GitHub
+
+---
+
+# 🚀 Installation
+
+## Clone Repository
+
+```bash
 git clone https://github.com/yourusername/NetworkSecurity.git
 
 cd NetworkSecurity
+```
 
-Create virtual environment
+## Create Virtual Environment
 
+```bash
 python -m venv venv
-
-Activate environment
+```
 
 Windows
 
+```bash
 venv\Scripts\activate
+```
 
 Linux
 
+```bash
 source venv/bin/activate
+```
 
-Install dependencies
+## Install Dependencies
 
+```bash
 pip install -r requirements.txt
+```
 
-Run FastAPI
+## Run Application
 
+```bash
 uvicorn app:app --reload
+```
 
-Visit
+Open
 
+```
 http://127.0.0.1:8000/docs
-📈 Prediction Pipeline
-User submits website features
-FastAPI receives request
-Preprocessor transforms input
-Trained model performs inference
-Prediction returned to user
-📌 Future Improvements
-Docker Containerization
-CI/CD with GitHub Actions
-Kubernetes Deployment
-Real-time Monitoring
-Prometheus & Grafana
-Automated Model Retraining
-User Authentication
-HTTPS & Reverse Proxy with Nginx
-📸 Screenshots
+```
 
+---
 
-👨‍💻 Author
+# 📈 Machine Learning Pipeline
 
-Ankit Kumar
+```text
+Raw Dataset
+     │
+     ▼
+Data Ingestion
+     │
+     ▼
+Data Validation
+     │
+     ▼
+Data Transformation
+     │
+     ▼
+Model Training
+     │
+     ▼
+Best Model Selection
+     │
+     ▼
+Model Saved
+     │
+     ▼
+Prediction API
+```
+
+---
+
+# 📈 Prediction Flow
+
+1. User submits website security features.
+2. FastAPI receives the request.
+3. Data is preprocessed using the saved transformation pipeline.
+4. Trained model predicts whether the website is Legitimate or Phishing.
+5. Prediction is returned through the API.
+
+---
+
+# 📌 Future Enhancements
+
+- Docker Deployment
+- GitHub Actions CI/CD
+- Kubernetes Deployment
+- Prometheus & Grafana Monitoring
+- Automated Model Retraining
+- Reverse Proxy with Nginx
+- HTTPS Support
+
+---
+
+# 👨‍💻 Author
+
+**Ankit Kumar**
 
 B.Tech
-IIT (ISM) Dhanbad
+Indian Institute of Technology (ISM), Dhanbad
+
+
+---
+
+⭐ If you found this project useful, consider giving it a **Star** on GitHub.
