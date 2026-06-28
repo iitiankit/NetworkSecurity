@@ -34,7 +34,7 @@ http://52.91.170.57/docs
 
 ---
 
-# 🏗️ Architecture
+#  Architecture
 
 ```text
                      MongoDB Atlas
