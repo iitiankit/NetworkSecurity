@@ -1,56 +1,69 @@
-# 🛡️ Network Security - Phishing Website Detection using Machine Learning
+# 🛡️ Network Security - Phishing Website Detection
 
-An end-to-end Machine Learning project that detects phishing websites using URL and website security features. This project follows a production-ready MLOps architecture with modular ETL pipelines, model training, cloud integration, and FastAPI deployment.
+An end-to-end Machine Learning project for detecting phishing websites using URL and website security features. The project follows a modular architecture with data ingestion, validation, transformation, model training, prediction pipeline, FastAPI deployment, and cloud database integration.
 
 ---
 
-## 🚀 Features
+## 🚀 Live Demo
+
+**Application**
+
+http://52.91.170.57
+
+**API Documentation (Swagger)**
+
+http://52.91.170.57/docs
+
+---
+
+## 📌 Features
 
 - End-to-End Machine Learning Pipeline
-- Modular ETL Architecture
+- Modular Project Architecture
 - Data Ingestion from MongoDB Atlas
-- Data Validation using Schema Validation
-- Data Transformation Pipeline
+- Data Validation
+- Data Transformation
 - Model Training & Evaluation
-- Hyperparameter Tuning
-- MLflow Experiment Tracking
-- AWS S3 Integration for Model Artifacts
+- Prediction Pipeline
 - FastAPI REST API
 - Interactive Swagger Documentation
 - Logging & Custom Exception Handling
-- Production-Ready Project Structure
+- Production Deployment on AWS EC2
+- Nginx Reverse Proxy
+- Systemd Service Management
 
 ---
 
-# 📌 Project Workflow
+# 🏗️ Architecture
 
 ```text
-                 MongoDB Atlas
-                      │
-                      ▼
-              Data Ingestion
-                      │
-                      ▼
-              Data Validation
-                      │
-                      ▼
-           Data Transformation
-                      │
-                      ▼
-              Model Training
-                      │
-                      ▼
-          Best Model Selection
-                      │
-                      ▼
-            Upload Artifacts
-                 to AWS S3
-                      │
-                      ▼
-             FastAPI Prediction API
-                      │
-                      ▼
-                  End User
+                     MongoDB Atlas
+                           │
+                           ▼
+                  Data Ingestion Pipeline
+                           │
+                           ▼
+                  Data Validation Pipeline
+                           │
+                           ▼
+               Data Transformation Pipeline
+                           │
+                           ▼
+                   Model Training Pipeline
+                           │
+                           ▼
+                    Trained Model (.pkl)
+                           │
+                           ▼
+                  FastAPI Prediction API
+                           │
+                 Nginx Reverse Proxy
+                           │
+                           ▼
+                      AWS EC2 Server
+                           │
+                           ▼
+                          User
 ```
 
 ---
@@ -61,22 +74,21 @@ An end-to-end Machine Learning project that detects phishing websites using URL 
 NetworkSecurity/
 │
 ├── networksecurity/
-│   ├── cloud/
 │   ├── components/
 │   │   ├── data_ingestion.py
 │   │   ├── data_validation.py
 │   │   ├── data_transformation.py
 │   │   ├── model_trainer.py
 │   │
-│   ├── configuration/
-│   ├── constants/
-│   ├── entity/
-│   ├── exception/
-│   ├── logger/
 │   ├── pipeline/
 │   │   ├── training_pipeline.py
 │   │   └── prediction_pipeline.py
 │   │
+│   ├── entity/
+│   ├── configuration/
+│   ├── constants/
+│   ├── exception/
+│   ├── logger/
 │   └── utils/
 │
 ├── templates/
@@ -92,7 +104,7 @@ NetworkSecurity/
 
 # 📊 Dataset
 
-The dataset contains 30 URL and website security-related features used to classify websites as **Legitimate** or **Phishing**.
+The dataset contains **30 website security features** used to classify websites as **Legitimate** or **Phishing**.
 
 ### Sample Features
 
@@ -106,85 +118,78 @@ The dataset contains 30 URL and website security-related features used to classi
 - URL_of_Anchor
 - Links_in_tags
 - web_traffic
-- Page_Rank
 - Google_Index
+- Page_Rank
 - Statistical_report
 
 ### Target Variable
 
-| Value | Class |
-|------|-------|
+| Value | Meaning |
+|------|---------|
 | 1 | Legitimate Website |
 | -1 | Phishing Website |
 
 ---
 
-# ⚙️ ETL Pipeline
+# ⚙️ Machine Learning Pipeline
 
 ## 📥 Data Ingestion
 
 - Reads data from MongoDB Atlas
-- Exports dataset to Feature Store
-- Splits dataset into Train/Test
-- Stores ingestion artifacts
+- Creates feature store
+- Train-Test split
 
 ---
 
 ## ✅ Data Validation
 
 - Schema Validation
-- Missing Value Validation
-- Data Drift Detection
-- Dataset Integrity Checks
+- Missing Value Checks
+- Dataset Integrity Validation
 
 ---
 
 ## 🔄 Data Transformation
 
-- Feature Engineering
 - Data Preprocessing
-- Transformation Pipeline Creation
-- Serialization of Preprocessor
+- Feature Engineering
+- Pipeline Serialization
 
 ---
 
 ## 🤖 Model Training
 
-- Trains Multiple Machine Learning Models
+- Multiple ML Algorithms
 - Hyperparameter Tuning
 - Model Evaluation
 - Best Model Selection
-- Saves Model Artifacts
 
 ---
 
-# 🌐 FastAPI Endpoints
+# 🌐 API Endpoints
 
 | Endpoint | Description |
 |----------|-------------|
 | `/` | Home Page |
-| `/train` | Train Machine Learning Model |
-| `/predict` | Predict Website Type |
-| `/docs` | Swagger API Documentation |
+| `/train` | Train Model |
+| `/predict` | Predict Website Category |
+| `/docs` | Swagger Documentation |
 
 ---
 
-# ☁️ Cloud Integration
+# ☁️ Deployment
 
-## MongoDB Atlas
+The application is deployed on **AWS EC2** using a production-ready architecture.
 
-- Stores Raw Dataset
-- Used as Data Source for ETL Pipeline
+### Deployment Stack
 
-## AWS S3
-
-Stores
-
-- Trained Models
-- Feature Store
-- Preprocessor
-- Pipeline Artifacts
-- Logs
+- AWS EC2
+- Ubuntu Server
+- FastAPI
+- Uvicorn
+- Nginx
+- Systemd
+- MongoDB Atlas
 
 ---
 
@@ -211,11 +216,15 @@ Stores
 
 ### Cloud
 
-- AWS S3
+- AWS EC2
 
-### Experiment Tracking
+### Web Server
 
-- MLflow
+- Nginx
+
+### Service Manager
+
+- Systemd
 
 ### Data Processing
 
@@ -231,19 +240,21 @@ Stores
 
 # 🚀 Installation
 
-## Clone Repository
+Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/NetworkSecurity.git
+git clone https://github.com/iitiankit/NetworkSecurity.git
 
 cd NetworkSecurity
 ```
 
-## Create Virtual Environment
+Create Virtual Environment
 
 ```bash
 python -m venv venv
 ```
+
+Activate
 
 Windows
 
@@ -257,13 +268,13 @@ Linux
 source venv/bin/activate
 ```
 
-## Install Dependencies
+Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Run Application
+Run Application
 
 ```bash
 uvicorn app:app --reload
@@ -277,54 +288,54 @@ http://127.0.0.1:8000/docs
 
 ---
 
-# 📈 Machine Learning Pipeline
+# 🚀 AWS Deployment
 
-```text
-Raw Dataset
-     │
-     ▼
-Data Ingestion
-     │
-     ▼
-Data Validation
-     │
-     ▼
-Data Transformation
-     │
-     ▼
-Model Training
-     │
-     ▼
-Best Model Selection
-     │
-     ▼
-Model Saved
-     │
-     ▼
-Prediction API
-```
+The application has been deployed on an AWS EC2 instance.
+
+Deployment Steps
+
+- Launch EC2 Instance
+- Install Python & Dependencies
+- Clone GitHub Repository
+- Create Virtual Environment
+- Install Requirements
+- Configure MongoDB Atlas
+- Run FastAPI with Uvicorn
+- Configure Systemd Service
+- Configure Nginx Reverse Proxy
+- Deploy Application
 
 ---
 
 # 📈 Prediction Flow
 
-1. User submits website security features.
-2. FastAPI receives the request.
-3. Data is preprocessed using the saved transformation pipeline.
-4. Trained model predicts whether the website is Legitimate or Phishing.
-5. Prediction is returned through the API.
+```text
+User
+ │
+ ▼
+FastAPI API
+ │
+ ▼
+Preprocessor
+ │
+ ▼
+Trained Model
+ │
+ ▼
+Prediction
+```
 
 ---
 
 # 📌 Future Enhancements
 
-- Docker Deployment
+- AWS S3 for Model Artifacts
+- MLflow Model Registry
+- Docker Containerization
 - GitHub Actions CI/CD
-- Kubernetes Deployment
+- HTTPS using Let's Encrypt
+- Custom Domain
 - Prometheus & Grafana Monitoring
-- Automated Model Retraining
-- Reverse Proxy with Nginx
-- HTTPS Support
 
 ---
 
@@ -335,7 +346,9 @@ Prediction API
 B.Tech
 Indian Institute of Technology (ISM), Dhanbad
 
+GitHub: https://github.com/iitiankit
+
 
 ---
 
-⭐ If you found this project useful, consider giving it a **Star** on GitHub.
+⭐ If you found this project useful, please consider giving it a **Star** on GitHub.
