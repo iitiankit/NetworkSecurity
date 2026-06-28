@@ -234,10 +234,12 @@ Prometheus & Grafana
 Automated Model Retraining
 User Authentication
 HTTPS & Reverse Proxy with Nginx
+📸 Screenshots
+
 
 👨‍💻 Author
 
 Ankit Kumar
 
-B.Tech, Chemical Engineering
+B.Tech
 IIT (ISM) Dhanbad
